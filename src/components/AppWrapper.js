@@ -13,5 +13,5 @@ export default function AppWrapper({ children }) {
 }
 
 AppWrapper.propTypes = {
-  children: PropTypes.oneOf([PropTypes.node, PropTypes.func]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
 };
