@@ -27,9 +27,9 @@ const Footer = styled.footer`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-export default function CreateShipmentModal({ onClick, ...props }) {
+export default function CreateShipmentModal({ closeModalClick, ...props }) {
   return (
-    <Modal onClick={onClick} {...props}>
+    <Modal onClick={closeModalClick} {...props}>
       <header>
         <HeaderTitle>New delivery </HeaderTitle>
         <p>
@@ -63,7 +63,7 @@ export default function CreateShipmentModal({ onClick, ...props }) {
       </section>
 
       <Footer>
-        <BaseButton onClick={onClick}>Cancel</BaseButton>
+        <BaseButton onClick={closeModalClick}>Cancel</BaseButton>
         <PrimaryButton type="submit" form="new-order">
           Create new delivery
         </PrimaryButton>

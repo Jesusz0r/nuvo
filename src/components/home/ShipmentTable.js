@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,7 +7,6 @@ import { IconButton } from "../common/Buttons";
 // Icons
 import { ReactComponent as DetailsIcon } from "../../icons/details.svg";
 import { ReactComponent as ArrowDownIcon } from "../../icons/arrow-down.svg";
-import CreateShipmentModal from "./CreateShipmentModal";
 
 const Table = styled.table`
   margin: 48px 0;
@@ -34,56 +32,49 @@ const TableText = styled.p`
       : ""};
 `;
 
-export default function ShipmentTable() {
-  const [show, setShow] = useState(false);
-
-  function onClick() {
-    setShow((previousState) => !previousState);
-  }
-
+export default function ShipmentTable({ orders, openModalClick }) {
   return (
-    <>
-      <CreateShipmentModal show={show} onClick={onClick} />
-      <Table>
-        <tbody>
-          <TableRow>
+    <Table>
+      <tbody>
+        {orders.map((order) => (
+          <TableRow key={order.id}>
             <TableData>
               <TableText lightColor>Status</TableText>
-              <TableText>Ready</TableText>
+              <TableText>{order.status || "-"}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Order ID</TableText>
-              <TableText>009-300FCT</TableText>
+              <TableText>{order.id || "-"}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Technician</TableText>
-              <TableText>Ben Santana</TableText>
+              <TableText>{order.technician || "-"}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Platform</TableText>
-              <TableText>Gamma</TableText>
+              <TableText>{order.platform || "-"}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Drone</TableText>
-              <TableText>DJI-004Q</TableText>
+              <TableText>{order.drone || "-"}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Technical check</TableText>
-              <TableText>Passed</TableText>
+              <TableText>{order.technicalCheck || "-"}</TableText>
             </TableData>
             <TableData>
               <IconButton icon={<DetailsIcon />}>
-                <Link to="/shipment/009-300FCT">Details</Link>
+                <Link to={`/shipment/${order.id}`}>Details</Link>
               </IconButton>
             </TableData>
             <TableData>
-              <IconButton icon={<ArrowDownIcon />} onClick={onClick}>
+              <IconButton icon={<ArrowDownIcon />} onClick={openModalClick}>
                 Actions
               </IconButton>
             </TableData>
           </TableRow>
-        </tbody>
-      </Table>
-    </>
+        ))}
+      </tbody>
+    </Table>
   );
 }
