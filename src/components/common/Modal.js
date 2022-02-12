@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
@@ -36,3 +37,9 @@ export default function Modal({ show, onClick, children }) {
       )
     : null;
 }
+
+Modal.propTypes = {
+  show: propTypes.bool.isRequired,
+  onClick: propTypes.func.isRequired,
+  children: propTypes.oneOfType([propTypes.node, propTypes.func]).isRequired,
+};

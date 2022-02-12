@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 export const BaseButton = styled.button`
@@ -34,4 +35,13 @@ export const IconButton = ({ icon, children, type, ...props }) => {
       {icon}
     </BaseButton>
   );
+};
+
+IconButton.defaultProps = {
+  type: "button",
+};
+IconButton.propTypes = {
+  icon: propTypes.oneOfType([propTypes.node, propTypes.func]).isRequired,
+  children: propTypes.oneOfType([propTypes.node, propTypes.func]).isRequired,
+  type: propTypes.string,
 };

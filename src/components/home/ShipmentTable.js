@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 // Components
@@ -44,7 +45,7 @@ export default function ShipmentTable({ orders, openModalClick }) {
             </TableData>
             <TableData>
               <TableText lightColor>Order ID</TableText>
-              <TableText>{order.id || "-"}</TableText>
+              <TableText>{order.id}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Technician</TableText>
@@ -78,3 +79,17 @@ export default function ShipmentTable({ orders, openModalClick }) {
     </Table>
   );
 }
+
+ShipmentTable.propTypes = {
+  orders: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string.isRequired,
+      status: propTypes.string,
+      technician: propTypes.string,
+      platform: propTypes.string,
+      drone: propTypes.string,
+      technicalCheck: propTypes.string,
+    })
+  ).isRequired,
+  openModalClick: propTypes.func.isRequired,
+};

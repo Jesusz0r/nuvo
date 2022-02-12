@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 // Icons
@@ -51,11 +52,11 @@ export default function Input({ id, type, label, options, ...props }) {
   if (type === "search") {
     return (
       <Container>
-        <Label htmlFor={id}>{label}</Label>
+        {label ? <Label htmlFor={id}>{label}</Label> : null}
 
         <IconContainer>
           <SearchInputIcon />
-          <SearchInput type="text" {...props} />
+          <SearchInput id={id} name={id} type="text" {...props} />
         </IconContainer>
       </Container>
     );
@@ -64,11 +65,11 @@ export default function Input({ id, type, label, options, ...props }) {
   if (type === "dropdown") {
     return (
       <Container>
-        <Label htmlFor={id}>{label}</Label>
+        {label ? <Label htmlFor={id}>{label}</Label> : null}
 
         <IconContainer>
           <SelectInputIcon />
-          <SelectInput as="select" {...props}>
+          <SelectInput id={id} name={id} as="select" {...props}>
             <option value="">-</option>
 
             {options.map((option) => {
@@ -86,8 +87,25 @@ export default function Input({ id, type, label, options, ...props }) {
 
   return (
     <Container>
-      <Label htmlFor={id}>{label}</Label>
-      <BaseInput type="text" {...props} />
+      {label ? <Label htmlFor={id}>{label}</Label> : null}
+
+      <BaseInput id={id} name={id} type="text" {...props} />
     </Container>
   );
 }
+
+Input.defaultProps = {
+  label: "",
+  options: [],
+};
+Input.propTypes = {
+  id: propTypes.string.isRequired,
+  type: propTypes.string,
+  label: propTypes.string,
+  options: propTypes.arrayOf(
+    propTypes.shape({
+      value: propTypes.string.isRequired,
+      name: propTypes.string.isRequired,
+    })
+  ),
+};

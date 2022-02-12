@@ -39,7 +39,7 @@ export default function PageHeading() {
       </Container>
 
       <Container>
-        <Input type="search" />
+        <Input id="search" type="search" />
 
         <PrimaryButton type="submit">New Delivery</PrimaryButton>
       </Container>

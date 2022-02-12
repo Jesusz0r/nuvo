@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 // Components
@@ -45,16 +46,18 @@ export default function CreateShipmentModal({ closeModalClick, ...props }) {
             e.preventDefault();
           }}
         >
-          <Input label="Order ID" required />
-          <Input label="Technician" type="search" required />
+          <Input label="Order ID" id="order-id" required />
+          <Input label="Technician" id="technician" type="search" required />
           <Input
             label="Platform"
+            id="platform"
             type="dropdown"
             options={[{ name: "Tetha", value: "Tetha" }]}
             required
           />
           <Input
             label="Drone"
+            id="drone"
             type="dropdown"
             options={[{ name: "DJI-004Q", value: "DJI-004Q " }]}
             required
@@ -71,3 +74,7 @@ export default function CreateShipmentModal({ closeModalClick, ...props }) {
     </Modal>
   );
 }
+
+CreateShipmentModal.propTypes = {
+  closeModalClick: propTypes.func.isRequired,
+};
