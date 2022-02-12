@@ -31,6 +31,7 @@ const TableText = styled.p`
         margin-bottom:4px;
       `
       : ""};
+  font-weight: ${({ boldColor }) => (boldColor ? 500 : 300)};
 `;
 
 export default function ShipmentTable({ orders, openModalClick }) {
@@ -41,7 +42,7 @@ export default function ShipmentTable({ orders, openModalClick }) {
           <TableRow key={order.id}>
             <TableData>
               <TableText lightColor>Status</TableText>
-              <TableText>{order.status || "-"}</TableText>
+              <TableText boldColor>{order.status || "-"}</TableText>
             </TableData>
             <TableData>
               <TableText lightColor>Order ID</TableText>
