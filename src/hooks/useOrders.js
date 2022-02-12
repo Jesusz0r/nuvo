@@ -26,7 +26,7 @@ export default function useLocalStorage(key, initialValue = []) {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
       // add new value to array
-      const newValuesToStore = [...storedValue, valueToStore];
+      const newValuesToStore = [valueToStore, ...storedValue];
 
       // Save State
       setStoredValue(newValuesToStore);

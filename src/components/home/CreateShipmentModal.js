@@ -1,3 +1,4 @@
+import { useState } from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
@@ -28,9 +29,19 @@ const Footer = styled.footer`
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-export default function CreateShipmentModal({ closeModalClick, ...props }) {
+export default function CreateShipmentModal({
+  show,
+  closeModalClick,
+  onCreate,
+  ...props
+}) {
+  const [orderId, setOrderId] = useState("");
+  const [technician, setTechnician] = useState("");
+  const [platform, setPlatform] = useState("");
+  const [drone, setDrone] = useState("");
+
   return (
-    <Modal onClick={closeModalClick} {...props}>
+    <Modal onClick={closeModalClick} show={show} {...props}>
       <header>
         <HeaderTitle>New delivery </HeaderTitle>
         <p>
@@ -44,13 +55,36 @@ export default function CreateShipmentModal({ closeModalClick, ...props }) {
           id="new-order"
           onSubmit={(e) => {
             e.preventDefault();
+
+            onCreate({
+              id: orderId,
+              technician,
+              platform,
+              drone,
+              status: "Ready",
+            });
           }}
         >
-          <Input label="Order ID" id="order-id" required />
-          <Input label="Technician" id="technician" type="search" required />
+          <Input
+            label="Order ID"
+            id="order-id"
+            value={orderId}
+            onChange={(e) => setOrderId(e.target.value)}
+            required
+          />
+          <Input
+            label="Technician"
+            id="technician"
+            value={technician}
+            onChange={(e) => setTechnician(e.target.value)}
+            type="search"
+            required
+          />
           <Input
             label="Platform"
             id="platform"
+            value={platform}
+            onChange={(e) => setPlatform(e.target.value)}
             type="dropdown"
             options={[{ name: "Tetha", value: "Tetha" }]}
             required
@@ -58,6 +92,8 @@ export default function CreateShipmentModal({ closeModalClick, ...props }) {
           <Input
             label="Drone"
             id="drone"
+            value={drone}
+            onChange={(e) => setDrone(e.target.value)}
             type="dropdown"
             options={[{ name: "DJI-004Q", value: "DJI-004Q " }]}
             required
@@ -76,5 +112,7 @@ export default function CreateShipmentModal({ closeModalClick, ...props }) {
 }
 
 CreateShipmentModal.propTypes = {
+  show: propTypes.bool.isRequired,
   closeModalClick: propTypes.func.isRequired,
+  onCreate: propTypes.func.isRequired,
 };

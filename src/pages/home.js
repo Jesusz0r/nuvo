@@ -33,18 +33,30 @@ const Section = styled.section`
 `;
 
 export default function Home() {
-  const [storedValue] = useLocalStorage("orders", defaultOrders);
+  const [storedValue, setStoredValue] = useLocalStorage(
+    "orders",
+    defaultOrders
+  );
   const [show, setShow] = useState(false);
 
-  function onClick() {
+  function onModalClick() {
     setShow((previousState) => !previousState);
+  }
+
+  function handleShipmentCreation(shipment) {
+    setStoredValue(shipment);
+    setShow(false);
   }
 
   return (
     <Section>
       <PageHeading />
-      <ShipmentTable orders={storedValue} openModalClick={onClick} />
-      <CreateShipmentModal show={show} closeModalClick={onClick} />
+      <ShipmentTable orders={storedValue} openModalClick={onModalClick} />
+      <CreateShipmentModal
+        show={show}
+        closeModalClick={onModalClick}
+        onCreate={handleShipmentCreation}
+      />
     </Section>
   );
 }
