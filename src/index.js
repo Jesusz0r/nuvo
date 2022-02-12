@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Helmet from "react-helmet";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import AppWrapper from "./components/AppWrapper";
@@ -12,8 +13,6 @@ import Shipment from "./pages/shipment";
 import Nav from "./components/Nav";
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
-
   *, *:before, *:after {
     margin: 0;
     padding: 0;
@@ -32,9 +31,17 @@ const GlobalStyles = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
+    <Helmet>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap"
+        rel="stylesheet"
+      />
+    </Helmet>
 
     <Router>
+      <GlobalStyles />
       <AppWrapper>
         <Nav />
 
