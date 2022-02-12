@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // Components
@@ -64,7 +65,9 @@ export default function ShipmentTable() {
             <TableText>Passed</TableText>
           </TableData>
           <TableData>
-            <IconButton icon={<DetailsIcon />}>Details</IconButton>
+            <IconButton icon={<DetailsIcon />}>
+              <Link to="/shipment/009-300FCT">Details</Link>
+            </IconButton>
           </TableData>
           <TableData>
             <IconButton icon={<ArrowDownIcon />}>Actions</IconButton>

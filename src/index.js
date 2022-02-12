@@ -6,6 +6,7 @@ import AppWrapper from "./components/AppWrapper";
 
 // Pages
 import Home from "./pages/home";
+import Shipment from "./pages/shipment";
 
 // Components
 import Nav from "./components/Nav";
@@ -22,24 +23,29 @@ const GlobalStyles = createGlobalStyle`
   html, body {
     font-family: 'Inter', Arial, Verdana, sans-serif;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyles />
 
-    <AppWrapper>
-      <Nav />
+    <Router>
+      <AppWrapper>
+        <Nav />
 
-      <Router>
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="/shipment/:id" element={<h1>Shipment</h1>} />
+            <Route path="/shipment/:id" element={<Shipment />} />
           </Route>
         </Routes>
-      </Router>
-    </AppWrapper>
+      </AppWrapper>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );

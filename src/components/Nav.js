@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // Icons
@@ -31,7 +32,9 @@ const StyledUserIcon = styled(UserIcon)`
 export default function Nav() {
   return (
     <NavContainer>
-      <Heading>Dronocargo</Heading>
+      <Heading>
+        <Link to="/">Dronocargo</Link>
+      </Heading>
 
       <UserInfo>
         <UserName>Jesús Mendoza</UserName>
