@@ -23,6 +23,11 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Inter', Arial, Verdana, sans-serif;
   }
 
+  p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
   a {
     text-decoration: none;
     color: inherit;

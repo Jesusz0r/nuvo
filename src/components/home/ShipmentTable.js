@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,6 +8,7 @@ import { IconButton } from "../common/Buttons";
 // Icons
 import { ReactComponent as DetailsIcon } from "../../icons/details.svg";
 import { ReactComponent as ArrowDownIcon } from "../../icons/arrow-down.svg";
+import CreateShipmentModal from "./CreateShipmentModal";
 
 const Table = styled.table`
   margin: 48px 0;
@@ -29,51 +31,59 @@ const TableText = styled.p`
         color: rgba(0, 0, 0, 0.5);
         margin-bottom:4px;
       `
-      : `
-        font-size: 1rem;
-        line-height: 1.5rem;
-      `};
+      : ""};
 `;
 
 export default function ShipmentTable() {
+  const [show, setShow] = useState(false);
+
+  function onClick() {
+    setShow((previousState) => !previousState);
+  }
+
   return (
-    <Table>
-      <tbody>
-        <TableRow>
-          <TableData>
-            <TableText lightColor>Status</TableText>
-            <TableText>Ready</TableText>
-          </TableData>
-          <TableData>
-            <TableText lightColor>Order ID</TableText>
-            <TableText>009-300FCT</TableText>
-          </TableData>
-          <TableData>
-            <TableText lightColor>Technician</TableText>
-            <TableText>Ben Santana</TableText>
-          </TableData>
-          <TableData>
-            <TableText lightColor>Platform</TableText>
-            <TableText>Gamma</TableText>
-          </TableData>
-          <TableData>
-            <TableText lightColor>Drone</TableText>
-            <TableText>DJI-004Q</TableText>
-          </TableData>
-          <TableData>
-            <TableText lightColor>Technical check</TableText>
-            <TableText>Passed</TableText>
-          </TableData>
-          <TableData>
-            <IconButton icon={<DetailsIcon />}>
-              <Link to="/shipment/009-300FCT">Details</Link>
-            </IconButton>
-          </TableData>
-          <TableData>
-            <IconButton icon={<ArrowDownIcon />}>Actions</IconButton>
-          </TableData>
-        </TableRow>
-      </tbody>
-    </Table>
+    <>
+      <CreateShipmentModal show={show} onClick={onClick} />
+      <Table>
+        <tbody>
+          <TableRow>
+            <TableData>
+              <TableText lightColor>Status</TableText>
+              <TableText>Ready</TableText>
+            </TableData>
+            <TableData>
+              <TableText lightColor>Order ID</TableText>
+              <TableText>009-300FCT</TableText>
+            </TableData>
+            <TableData>
+              <TableText lightColor>Technician</TableText>
+              <TableText>Ben Santana</TableText>
+            </TableData>
+            <TableData>
+              <TableText lightColor>Platform</TableText>
+              <TableText>Gamma</TableText>
+            </TableData>
+            <TableData>
+              <TableText lightColor>Drone</TableText>
+              <TableText>DJI-004Q</TableText>
+            </TableData>
+            <TableData>
+              <TableText lightColor>Technical check</TableText>
+              <TableText>Passed</TableText>
+            </TableData>
+            <TableData>
+              <IconButton icon={<DetailsIcon />}>
+                <Link to="/shipment/009-300FCT">Details</Link>
+              </IconButton>
+            </TableData>
+            <TableData>
+              <IconButton icon={<ArrowDownIcon />} onClick={onClick}>
+                Actions
+              </IconButton>
+            </TableData>
+          </TableRow>
+        </tbody>
+      </Table>
+    </>
   );
 }

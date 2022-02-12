@@ -16,13 +16,19 @@ export const BaseButton = styled.button`
   line-height: 1.5rem;
   padding: 8px 16px;
 `;
+export const PrimaryButton = styled(BaseButton)`
+  background-color: #307460;
+  color: white;
+  margin-left: 16px;
+`;
+
 const Text = styled.span`
   margin-right: 10px;
 `;
 
-export const IconButton = ({ icon, children }) => {
+export const IconButton = ({ icon, children, type, ...props }) => {
   return (
-    <BaseButton type="button">
+    <BaseButton type={type || "button"} {...props}>
       <Text>{children}</Text>
 
       {icon}

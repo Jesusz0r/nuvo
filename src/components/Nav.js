@@ -20,9 +20,6 @@ const UserInfo = styled.div`
   align-items: center;
 `;
 const UserName = styled.p`
-  font-size: 1rem;
-  line-height: 1.5rem;
-
   margin-right: 10px;
 `;
 const StyledUserIcon = styled(UserIcon)`
