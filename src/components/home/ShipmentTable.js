@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 // Components
-import { IconButton } from "../../common/Buttons";
+import { IconButton } from "../common/Buttons";
+
+// Icons
+import { ReactComponent as DetailsIcon } from "../../icons/details.svg";
+import { ReactComponent as ArrowDownIcon } from "../../icons/arrow-down.svg";
 
 const Table = styled.table`
   margin: 48px 0;
@@ -60,46 +64,10 @@ export default function ShipmentTable() {
             <TableText>Passed</TableText>
           </TableData>
           <TableData>
-            <IconButton
-              icon={
-                <svg
-                  width="20"
-                  height="16"
-                  viewBox="0 0 20 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M-6.10352e-05 0V16H19.9999V0H-6.10352e-05ZM17.9999 4.67H15.4999V2H17.9999V4.67ZM15.4999 6.67H17.9999V9.34H15.4999V6.67ZM1.99994 2H13.4999V14H1.99994V2ZM15.4999 14V11.33H17.9999V14H15.4999Z"
-                    fill="black"
-                    fillOpacity="0.25"
-                  />
-                </svg>
-              }
-            >
-              Details
-            </IconButton>
+            <IconButton icon={<DetailsIcon />}>Details</IconButton>
           </TableData>
           <TableData>
-            <IconButton
-              icon={
-                <svg
-                  width="12"
-                  height="8"
-                  viewBox="0 0 12 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.40994 0.590088L5.99994 5.17009L10.5899 0.590088L11.9999 2.00009L5.99994 8.00009L-6.10352e-05 2.00009L1.40994 0.590088Z"
-                    fill="black"
-                    fillOpacity="0.25"
-                  />
-                </svg>
-              }
-            >
-              Actions
-            </IconButton>
+            <IconButton icon={<ArrowDownIcon />}>Actions</IconButton>
           </TableData>
         </TableRow>
       </tbody>
