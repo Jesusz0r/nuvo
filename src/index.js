@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import Helmet from "react-helmet";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
-import AppWrapper from "./components/AppWrapper";
 
 // Pages
 import Home from "./pages/home";
 import Shipment from "./pages/shipment";
 
 // Components
-import Nav from "./components/Nav";
+import Nav from "./components/layout/Nav";
+import AppWrapper from "./components/layout/AppWrapper";
 
 const GlobalStyles = createGlobalStyle`
   *, *:before, *:after {

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // Icons
-import { ReactComponent as UserIcon } from "../icons/user.svg";
+import { ReactComponent as UserIcon } from "../../icons/user.svg";
 
 const NavContainer = styled.nav`
   display: flex;
