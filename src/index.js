@@ -1,15 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyles = createGlobalStyle`
+  *, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-    <h1>Initial App</h1>
+    <GlobalStyles />
+
+    <Router>
+      <Routes>
+        <Route path="/">
+          <Route index element={<h1>Home</h1>} />
+          <Route path="/shipment/:id" element={<h1>Shipment</h1>} />
+        </Route>
+      </Routes>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
