@@ -27,10 +27,10 @@ const BaseInput = styled.input`
     color: rgba(0, 0, 0, 0.5);
   }
 `;
-const SearchInput = styled(BaseInput)`
+const StyledSearchInput = styled(BaseInput)`
   padding: 6px 16px 6px 48px;
 `;
-const SelectInput = styled(BaseInput)`
+const StyledSelectInput = styled(BaseInput)`
   -webkit-appearance: none;
 `;
 const IconContainer = styled.div`
@@ -48,43 +48,7 @@ const SelectInputIcon = styled(ArrowDownIcon)`
   right: 20px;
 `;
 
-export default function Input({ id, type, label, options, ...props }) {
-  if (type === "search") {
-    return (
-      <Container>
-        {label ? <Label htmlFor={id}>{label}</Label> : null}
-
-        <IconContainer>
-          <SearchInputIcon />
-          <SearchInput id={id} name={id} type="text" {...props} />
-        </IconContainer>
-      </Container>
-    );
-  }
-
-  if (type === "dropdown") {
-    return (
-      <Container>
-        {label ? <Label htmlFor={id}>{label}</Label> : null}
-
-        <IconContainer>
-          <SelectInputIcon />
-          <SelectInput id={id} name={id} as="select" {...props}>
-            <option value="">-</option>
-
-            {options.map((option) => {
-              return (
-                <option key={option.value} value={option.value}>
-                  {option.name}
-                </option>
-              );
-            })}
-          </SelectInput>
-        </IconContainer>
-      </Container>
-    );
-  }
-
+export const Input = ({ id, label, ...props }) => {
   return (
     <Container>
       {label ? <Label htmlFor={id}>{label}</Label> : null}
@@ -92,13 +56,65 @@ export default function Input({ id, type, label, options, ...props }) {
       <BaseInput id={id} name={id} type="text" {...props} />
     </Container>
   );
-}
+};
+
+export const SearchInput = ({ id, label, ...props }) => {
+  return (
+    <Container>
+      {label ? <Label htmlFor={id}>{label}</Label> : null}
+
+      <IconContainer>
+        <SearchInputIcon />
+        <StyledSearchInput id={id} name={id} type="text" {...props} />
+      </IconContainer>
+    </Container>
+  );
+};
+
+export const Select = ({ id, label, options, ...props }) => {
+  return (
+    <Container>
+      {label ? <Label htmlFor={id}>{label}</Label> : null}
+
+      <IconContainer>
+        <SelectInputIcon />
+        <StyledSelectInput id={id} name={id} as="select" {...props}>
+          <option value="">-</option>
+
+          {options.map((option) => {
+            return (
+              <option key={option.value} value={option.value}>
+                {option.name}
+              </option>
+            );
+          })}
+        </StyledSelectInput>
+      </IconContainer>
+    </Container>
+  );
+};
 
 Input.defaultProps = {
   label: "",
-  options: [],
 };
 Input.propTypes = {
+  id: propTypes.string.isRequired,
+  type: propTypes.string,
+  label: propTypes.string,
+};
+SearchInput.defaultProps = {
+  label: "",
+};
+SearchInput.propTypes = {
+  id: propTypes.string.isRequired,
+  type: propTypes.string,
+  label: propTypes.string,
+};
+Select.defaultProps = {
+  label: "",
+  options: [],
+};
+Select.propTypes = {
   id: propTypes.string.isRequired,
   type: propTypes.string,
   label: propTypes.string,

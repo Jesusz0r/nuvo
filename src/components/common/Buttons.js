@@ -2,6 +2,9 @@ import React from "react";
 import propTypes from "prop-types";
 import styled from "styled-components";
 
+const IconButtonText = styled.span`
+  margin-right: 10px;
+`;
 export const BaseButton = styled.button`
   cursor: pointer;
   background: #fff;
@@ -23,14 +26,10 @@ export const PrimaryButton = styled(BaseButton)`
   margin-left: 16px;
 `;
 
-const Text = styled.span`
-  margin-right: 10px;
-`;
-
 export const IconButton = ({ icon, children, type, ...props }) => {
   return (
     <BaseButton type={type || "button"} {...props}>
-      <Text>{children}</Text>
+      <IconButtonText>{children}</IconButtonText>
 
       {icon}
     </BaseButton>

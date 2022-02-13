@@ -34,7 +34,7 @@ const TableText = styled.p`
   font-weight: ${({ boldColor }) => (boldColor ? 500 : 300)};
 `;
 
-export default function ShipmentTable({ orders, openModalClick }) {
+export default function ShipmentTable({ orders }) {
   return (
     <Table>
       <tbody>
@@ -70,9 +70,7 @@ export default function ShipmentTable({ orders, openModalClick }) {
               </IconButton>
             </TableData>
             <TableData>
-              <IconButton icon={<ArrowDownIcon />} onClick={openModalClick}>
-                Actions
-              </IconButton>
+              <IconButton icon={<ArrowDownIcon />}>Actions</IconButton>
             </TableData>
           </TableRow>
         ))}
@@ -92,5 +90,4 @@ ShipmentTable.propTypes = {
       technicalCheck: propTypes.string,
     })
   ).isRequired,
-  openModalClick: propTypes.func.isRequired,
 };

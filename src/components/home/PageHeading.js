@@ -1,8 +1,9 @@
+import propTypes from "prop-types";
 import styled from "styled-components";
 
 // Components
 import { PrimaryButton } from "../common/Buttons";
-import Input from "../common/Input";
+import { SearchInput } from "../common/Input";
 
 const Header = styled.header`
   display: flex;
@@ -28,7 +29,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-export default function PageHeading() {
+export default function PageHeading({ openModalClick }) {
   return (
     <Header>
       <Container>
@@ -39,10 +40,16 @@ export default function PageHeading() {
       </Container>
 
       <Container>
-        <Input id="search" type="search" />
+        <SearchInput id="search" type="search" />
 
-        <PrimaryButton type="submit">New Delivery</PrimaryButton>
+        <PrimaryButton type="submit" onClick={openModalClick}>
+          New Delivery
+        </PrimaryButton>
       </Container>
     </Header>
   );
 }
+
+PageHeading.propTypes = {
+  openModalClick: propTypes.func.isRequired,
+};

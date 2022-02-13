@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 // Components
 import Modal from "../common/Modal";
-import Input from "../common/Input";
+import { Input, Select, SearchInput } from "../common/Input";
 import { BaseButton, PrimaryButton } from "../common/Buttons";
 
 const HeaderTitle = styled.h2`
@@ -72,7 +72,7 @@ export default function CreateShipmentModal({
             onChange={(e) => setOrderId(e.target.value)}
             required
           />
-          <Input
+          <SearchInput
             label="Technician"
             id="technician"
             value={technician}
@@ -80,7 +80,7 @@ export default function CreateShipmentModal({
             type="search"
             required
           />
-          <Input
+          <Select
             label="Platform"
             id="platform"
             value={platform}
@@ -89,7 +89,7 @@ export default function CreateShipmentModal({
             options={[{ name: "Tetha", value: "Tetha" }]}
             required
           />
-          <Input
+          <Select
             label="Drone"
             id="drone"
             value={drone}
