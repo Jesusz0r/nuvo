@@ -45,7 +45,6 @@ export default function Home() {
 
   function handleShipmentCreation(shipment) {
     setStoredValue(shipment);
-    setShow(false);
   }
 
   return (

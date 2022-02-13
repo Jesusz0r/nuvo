@@ -40,8 +40,32 @@ export default function CreateShipmentModal({
   const [platform, setPlatform] = useState("");
   const [drone, setDrone] = useState("");
 
+  function handleClose() {
+    setOrderId("");
+    setTechnician("");
+    setPlatform("");
+    setDrone("");
+    closeModalClick();
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onCreate({
+      id: orderId,
+      technician,
+      platform,
+      drone,
+      status: "Ready",
+    });
+    setOrderId("");
+    setTechnician("");
+    setPlatform("");
+    setDrone("");
+    closeModalClick();
+  }
+
   return (
-    <Modal onClick={closeModalClick} show={show} {...props}>
+    <Modal onClick={handleClose} show={show} {...props}>
       <header>
         <HeaderTitle>New delivery </HeaderTitle>
         <p>
@@ -51,20 +75,7 @@ export default function CreateShipmentModal({
       </header>
 
       <section>
-        <Form
-          id="new-order"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            onCreate({
-              id: orderId,
-              technician,
-              platform,
-              drone,
-              status: "Ready",
-            });
-          }}
-        >
+        <Form id="new-order" onSubmit={handleSubmit}>
           <Input
             label="Order ID"
             id="order-id"
@@ -102,7 +113,7 @@ export default function CreateShipmentModal({
       </section>
 
       <Footer>
-        <BaseButton onClick={closeModalClick}>Cancel</BaseButton>
+        <BaseButton onClick={handleClose}>Cancel</BaseButton>
         <PrimaryButton type="submit" form="new-order">
           Create new delivery
         </PrimaryButton>
