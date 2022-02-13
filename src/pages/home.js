@@ -50,8 +50,8 @@ export default function Home() {
 
   return (
     <Section>
-      <PageHeading />
-      <ShipmentTable orders={storedValue} openModalClick={onModalClick} />
+      <PageHeading openModalClick={onModalClick} />
+      <ShipmentTable orders={storedValue} />
       <CreateShipmentModal
         show={show}
         closeModalClick={onModalClick}
