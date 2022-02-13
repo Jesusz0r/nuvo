@@ -17,6 +17,10 @@ const Table = styled.table`
 `;
 const TableRow = styled.tr`
   box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: inset 0px -2px 0px #307460;
+  }
 `;
 const TableData = styled.td`
   padding: 32px 0;
